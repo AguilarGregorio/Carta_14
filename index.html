@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El emoji en el título puede salir como cuadrito en W7, eso es normal -->
+    <title>Expediente Especial ❤</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="styles.css">
+    <style>
+        /* tu CSS igual que antes... */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+        }
+    </style>
+</head>
+<body onclick="createHeart(event)">
+
+    <div class="card" onclick="event.stopPropagation()">
+        <!-- AQUÍ CORREGIDO: 🫶 en vez de &#x1F9F6; -->
+        <div class="floating-heart" onclick="lanzarConfeti()">❤</div>
+        
+        <div class="badge">Expediente Num°14022026</div>
+        
+        <h2>Para la Futura Doctora Más Bella 🩺</h2>
+        <div class="divider"></div>
+        
+        <p>Sé que estos momentos son <span class="highlight">cruciales en tu carrera</span>, pero no quería dejar pasar este día sin desearte un féliz 14 de Febrero.</p>
+        
+        <p>Espero que sigas dando el 100% de ti. Sabes que cuentas con todo mi <b>apoyo tanto mental, emocional y académico</b>.</p>
+
+        <div class="quote-container">
+            <span class="quote-text">
+                "Podrán pasar meses, años, siglos y hasta una eternidad, pero te aseguro que cada día yo te amaría más..."
+            </span>
+            <div style="font-size: 0.8rem; margin-top: 10px; color: #888;">— Calle Ciega</div>
+        </div>
+
+        <!-- Aquí meto los emojis que quieres: 🩺 y 🫶🫶🫶 -->
+        <div class="footer">
+            Un abrazo, Tqm..! 🫶🫶🫶 💻
+        </div>
+        
+        <button class="btn-interact" onclick="mostrarMensaje()">Ver Diagnóstico de Apoyo</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Esto hace que Twemoji convierta los emojis en imágenes
+            twemoji.parse(document.body, {
+                folder: 'svg',
+                ext: '.svg'
+            });
+        };
+
+        function mostrarMensaje() {
+            lanzarConfeti();
+            setTimeout(() => {
+                // En el alert NO se verán los emojis nuevos en W7, eso es normal
+                alert('¡Sigue adelante Anais :) ! <3'); 
+            }, 100);
+        }
+
+        function lanzarConfeti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#007bff', '#ff4d6d', '#ffffff']
+                });
+            }
+        }
+
+        function createHeart(event) {
+            const heart = document.createElement('div');
+            heart.classList.add('click-heart');
+            // Puedes dejar el corazón clásico o poner 🫶 también si quieres
+            heart.innerHTML = '❤'; 
+            heart.style.left = event.clientX + 'px';
+            heart.style.top = event.clientY + 'px';
+            const size = Math.random() * 20 + 10;
+            heart.style.fontSize = size + 'px';
+            twemoji.parse(heart); 
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 1000);
+        }
+    </script>
+
+</body>
+</html>

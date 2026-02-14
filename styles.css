@@ -1,0 +1,178 @@
+:root {
+    --medical-blue: #007bff;
+    --heart-pink: #ff4d6d;
+    --soft-white: #f8f9fa;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    /* Fondo animado sutil */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    overflow: hidden; /* Evita barras de desplazamiento por los corazones */
+    user-select: none; /* Evita que se seleccione el texto al hacer clic rápido */
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    width: 85%;
+    max-width: 420px;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: fadeInUp 1.2s ease-out;
+    z-index: 10;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.badge {
+    background: var(--medical-blue);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.divider {
+    height: 2px;
+    width: 50px;
+    background: var(--heart-pink);
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: var(--medical-blue);
+    font-weight: 700;
+}
+
+.quote-container {
+    position: relative;
+    padding: 25px;
+    margin: 30px 0;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.quote-container:hover {
+    transform: scale(1.02);
+}
+
+.quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.floating-heart {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--heart-pink);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    animation: pulse 2s infinite;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 77, 109, 0.4);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 77, 109, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+}
+
+.footer {
+    margin-top: 30px;
+    font-weight: 500;
+    color: #333;
+}
+
+.btn-interact {
+    margin-top: 20px;
+    background: white;
+    border: 2px solid #ddd;
+    padding: 12px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    outline: none;
+}
+
+.btn-interact:hover {
+    background: var(--medical-blue);
+    color: white;
+    border-color: var(--medical-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-interact:active {
+    transform: scale(0.95);
+}
+
+/* Estilos para los corazones generados con JS */
+.click-heart {
+    position: fixed;
+    pointer-events: none;
+    animation: flyUp 1s ease-out forwards;
+    font-size: 20px;
+    z-index: 100;
+}
+
+@keyframes flyUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
